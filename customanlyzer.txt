@@ -1,0 +1,30 @@
+PUT custom_analyzer_test
+{
+  "settings": {
+    "analysis": {
+      "analyzer": {
+        "mycustom_analyzer":{
+        "type":"custom",
+        "char_filter":["html_strip"],
+        "tokenizer":"standard",
+        "filter":[
+          "lowercase","stop","asciifolding"
+        ]
+      }
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+POST /custom_analyzer_test/_analyze
+{
+  "analyzer": "mycustom_analyzer",
+  "text": ["Tom and Jerry fights always"]
+}
